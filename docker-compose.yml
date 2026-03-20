@@ -37,7 +37,7 @@ services:
       - san_network
 
   ipfs:
-    image: ipfs/go-ipfs:latest
+    image: ipfs/kubo:latest
     container_name: san_ipfs
     ports:
       - "4001:4001"

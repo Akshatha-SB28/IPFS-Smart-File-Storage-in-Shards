@@ -10,7 +10,7 @@ The central philosophy of this project is **"Trust No Single Entity"**.
 Instead of storing your file and its key on a single server (like traditional cloud storage), this project implements a zero-trust architecture:
 
 1.  **Client-Side Encryption**: Files are encrypted *before* they leave your browser. The server never sees the unencrypted file.
-2.  **Shamir's Secret Sharing**: The encryption key is **never stored intact**. It is mathematically split into 5 "shards".
+2.  **Secret Sharing**: The encryption key is **never stored intact**. It is mathematically split into 5 "shards".
 3.  **Distributed Key Management**: These shards are distributed across 5 independent nodes (Alpha, Beta, Gamma, Delta, Epsilon). A threshold of **3 shards** is required to reconstruct the key.
 4.  **Blockchain Verification**: Every file upload is recorded on a local Ethereum blockchain (Ganache), providing an immutable proof of existence and ownership.
 5.  **IPFS Storage**: The encrypted file blob is stored on the InterPlanetary File System (IPFS), ensuring decentralized and content-addressed storage.
@@ -22,7 +22,7 @@ Instead of storing your file and its key on a single server (like traditional cl
 ### 1. Upload Flow 📤
 1.  **Generation**: The client generates a high-entropy **AES-256-GCM** key.
 2.  **Encryption**: The file is encrypted locally in the browser using this key.
-3.  **Sharding**: The key is split into **5 shards** using Shamir's Secret Sharing.
+3.  **Sharding**: The key is split into **5 shards** using Secret Sharing.
 4.  **Distribution**:
     *   The **Encrypted File** is uploaded to IPFS.
     *   The **Key Shards** are sent to the backend, which distributes them to available nodes in the network database.
@@ -70,7 +70,7 @@ Instead of storing your file and its key on a single server (like traditional cl
 ### 1. Start Infrastructure
 Launch the database, IPFS node, and Blockchain (Ganache).
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### 2. Initialize Database

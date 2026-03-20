@@ -18,13 +18,13 @@
         "react-cytoscapejs": "^2.0.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^7.9.6",
-        "secrets.js-grempe": "^2.0.0",
-        "vite-plugin-node-polyfills": "^0.24.0"
+        "secrets.js-grempe": "^2.0.0"
     },
     "devDependencies": {
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.11",
-        "@vitejs/plugin-react": "^3.1.0",
-        "vite": "^4.2.0"
+        "@vitejs/plugin-react": "4.3.4",
+        "vite": "6.2.0",
+        "vite-plugin-node-polyfills": "^0.25.0"
     }
 }
