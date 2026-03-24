@@ -57,7 +57,7 @@ Decentralized cloud storage: store encrypted file blobs on IPFS (Pinata), keep m
      - Store replicas in `replicas` table with provider metadata and health.
    - **Client-Side Threshold Encryption**
      - Client generates AES-GCM key, encrypts file locally.
-     - Split key into `n` shards with threshold `t` using Shamir.
+     - Split key into `n` shards with threshold `t` using Shamir secret storage.
      - Store shard references and holder info in `key_shards` table (encrypted references only).
      - Decryption requires retrieving `t` shards from holders and combining client-side.
 
