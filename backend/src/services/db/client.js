@@ -2,14 +2,8 @@ const { Pool } = require('pg');
 
 // Ensure DATABASE_URL is set
 if (!process.env.DATABASE_URL) {
-  if (process.env.NODE_ENV === 'test') {
-    // In tests we may use mocked DB client and avoid noisy error output.
-    console.log('Using test default DATABASE_URL');
-    process.env.DATABASE_URL = 'postgres://localhost:5432/testdb';
-  } else {
-    console.error('DATABASE_URL environment variable is missing');
-    // In production/dev we may want to exit, but for now we just log.
-  }
+  console.error('DATABASE_URL environment variable is missing');
+  // In production, we might want to exit, but for dev we'll just log
 }
 
 const pool = new Pool({

@@ -1,4 +1,5 @@
 require('dotenv').config();
+const adminRouter = require('./routes/admin'); // Make sure the path matches your file structure
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -21,7 +22,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api', uploadRoutes); // uploadRoutes mounts at /upload inside the file usually, but let's check. 
 // upload.js has router.post('/upload', ...). So if we mount at /api, it is /api/upload. Correct.
 app.use('/api/files', filesRoutes);
-app.use('/api/admin', require('./routes/admin'));
+app.use('/api/admin', adminRouter);
 
 // Start Pinning Monitor
 startScheduler();
@@ -34,4 +35,19 @@ app.get('/health', (req, res) => {
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+});
+
+// Add this to your backend API file
+app.get('/api/admin/stats/shards', async (req, res) => {
+    try {
+        // This queries the PostgreSQL container you set up
+        const result = await pool.query('SELECT COUNT(*) FROM key_shards');
+        res.json({
+            success: true,
+            totalShards: parseInt(result.rows[0].count)
+        });
+    } catch (error) {
+        console.error('Error fetching shard count:', error);
+        res.status(500).json({ success: false });
+    }
 });
